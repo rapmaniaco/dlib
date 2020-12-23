@@ -1,0 +1,68 @@
+Teste compilando IMGlab conforme README.txt presente em 
+/home/edee/Downloads/DL/dlib-master/tools/imglab
+
+Ir até ~/Downloads/DL/dlib-master/tools/imglab/build
+
+Dar o comando
+
+./imglab -c mask.xml /home/edee/EdeE/Processamento_Imagem/Dlib/Dlib_03_ObjectDetection_Train_HOG/dataset/
+
+Criou-se o arquivo mask.xml. Então dá-se o comando
+
+./imglab mask.xml
+
+Segurar o Shift e desenhar o retângulo
+
+Após acabar, salvar o arquivo. Não foi possível ver nada abrindo ele no navegador, porém com o comando ./imglab mask.xml  é possível visualizar os retângulos em cada imagem. Treinamento:
+
+import dlib
+options = dlib.simple_object_detector_training_options()
+options.add_left_right_image_flips = False
+options.num_threads = 16
+options.be_verbose = True
+options.C = 5
+detector = dlib.train_simple_object_detector("./mask.xml", "mask.svm", options)
+
+Teste
+
+Criar um arquivo xml das imagens de teste
+
+./imglab -c mask_test.xml /home/edee/EdeE/Processamento_Imagem/Dlib/Dlib_03_ObjectDetection_Train_HOG/dataset/test/
+
+./imglab mask_test.xml
+
+
+print(dlib.test_simple_object_detector('mask_test.xml', "mask.svm"))
+
+
+======================
+https://blog.codecentric.de/en/2018/10/diesel-car-hog-detector/
+https://github.com/davisking/dlib/blob/master/python_examples/train_object_detector.py
+https://www.learnopencv.com/training-a-custom-object-detector-with-dlib-making-gesture-controlled-applications/
+Verificar
+https://towardsdatascience.com/how-to-create-your-own-custom-object-detector-766cb11ccd1c
+
+++++++++++++++++++++
+
+https://www.learnopencv.com/training-a-custom-object-detector-with-dlib-making-gesture-controlled-applications/
+https://towardsdatascience.com/how-to-create-your-own-custom-object-detector-766cb11ccd1c
+
+
+Segunda página de buscas por imagem
+https://www.google.com/search?q=v+for+vendetta+mask&tbm=isch&ved=2ahUKEwj5hreJtuLtAhUHBLkGHUoYBa4Q2-cCegQIABAA&oq=v+for+vende&gs_lcp=CgNpbWcQARgBMgQIABBDMgQIABBDMgIIADIECAAQQzICCAAyBAgAEEMyBAgAEEMyAggAMgQIABBDMgIIAFCPnzpYgK46YLS3OmgAcAB4AIAB7QGIAdkKkgEGMC4xMC4xmAEAoAEBqgELZ3dzLXdpei1pbWfAAQE&sclient=img&ei=SlbiX_m5DIeI5OUPyrCU8Ao&bih=985&biw=1853
+
+
+Anotando manualmente os retângulos
+pip3 install labelimg
+
+Once installed, we can proceed to start labeling our dataset by running the following command.
+labelImg path_to_images/
+
+
+cd /home/edee/EdeE/Processamento_Imagem/Dlib/Dlib_03_ObjectDetection_Train_HOG/dataset
+labelImg
+
+
+
+
+
